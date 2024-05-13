@@ -40,3 +40,14 @@
 .read-the-docs {
   color: #888;
 }
+
+.post-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.post-list .post-item {
+  border: 1px solid black;
+  width: 250px;
+}
