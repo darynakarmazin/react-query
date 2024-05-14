@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import "./App.css";
 import { Card } from "./ Card";
+import { useQuery } from "@tanstack/react-query";
 
 function App() {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [posts, setPosts] = useState([]);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const fetchPosts = async () => {
     return fetch("https://jsonplaceholder.typicode.com/posts").then(
@@ -12,18 +13,32 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchPosts()
-      .then((data) => setPosts(data))
-      .then(() => setIsLoading(false));
-  }, []);
+  const {
+    data: posts = [],
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["postsList"],
+    queryFn: fetchPosts,
+  });
+  // console.log(result);
+
+  // useEffect(() => {
+  //   setIsLoading(true);
+  //   fetchPosts()
+  //     .then((data) => setPosts(data))
+  //     .then(() => setIsLoading(false));
+  // }, []);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
+  if (isError) {
+    return <p>{`Error: ${JSON.stringify(error)}`}</p>;
+  }
 
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <ul className="post-list">

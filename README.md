@@ -17,3 +17,91 @@ Currently, two official plugins are available:
 - зберігаємо в юз стейт результат в then()
 - компонент з юз стейту отримує колекцію і рендерить список
 - зробити лоудер
+
+а тепер подивимось на реакт квері
+
+- npm i @tanstack/react-query
+- створемо клієнта
+- тепер нам не требв useEffect, useState, закоментуємо
+- const result = useQuery(); перший ключ, другий функція
+- консолимо результат і бачимо як багато нам повертає useQuery() ({…}
+  data
+  :
+  Array(100)
+  dataUpdatedAt
+  :
+  (...)
+  error
+  :
+  (...)
+  errorUpdateCount
+  :
+  (...)
+  errorUpdatedAt
+  :
+  (...)
+  failureCount
+  :
+  (...)
+  failureReason
+  :
+  (...)
+  fetchStatus
+  :
+  (...)
+  isError
+  :
+  (...)
+  isFetched
+  :
+  (...)
+  isFetchedAfterMount
+  :
+  (...)
+  isFetching
+  :
+  (...)
+  isInitialLoading
+  :
+  (...)
+  isLoading
+  :
+  (...)
+  isLoadingError
+  :
+  (...)
+  isPaused
+  :
+  (...)
+  isPending
+  :
+  (...)
+  isPlaceholderData
+  :
+  (...)
+  isRefetchError
+  :
+  (...)
+  isRefetching
+  :
+  (...)
+  isStale
+  :
+  (...)
+  isSuccess
+  :
+  (...)
+  refetch
+  :
+  (...)
+  status
+  :
+  (...))
+- деструктурезуємо результат і оримаємо const {
+  data: posts = [],
+  isLoading,
+  isError,
+  } = useQuery({
+  queryKey: ["postsList"],
+  queryFn: fetchPosts,
+  });
