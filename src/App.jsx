@@ -18,10 +18,14 @@ function App() {
     isLoading,
     isError,
     error,
+    isSuccess,
   } = useQuery({
     queryKey: ["postsList"],
     queryFn: fetchPosts,
   });
+
+  console.log(`isSuccess ${isSuccess}`);
+  console.log(`isError ${isError}`);
   // console.log(result);
 
   // useEffect(() => {
@@ -42,7 +46,7 @@ function App() {
 
   return (
     <ul className="post-list">
-      {posts &&
+      {isSuccess &&
         posts.map((post) => (
           <Card key={post.id} title={post.title} body={post.body} />
         ))}
